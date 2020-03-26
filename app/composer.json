@@ -1,0 +1,19 @@
+{
+  "name": "horioka/src",
+  "authors": [
+    {
+      "name": "horioka",
+      "email": "horioka@cro-co.co.jp"
+    }
+  ],
+  "require": {
+    "webonyx/graphql-php": "^0.13.8",
+    "vlucas/phpdotenv": "^4.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Data\\": "Data/",
+      "Type\\": "Type/"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+# @format
+
+version: "3"
+
+services:
+  php-fpm:
+    build:
+      context: ./php-fpm
+    ports:
+      - 9000
+    volumes:
+      - ./app:/var/www/html
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+
+  nginx:
+    image: nginx:1.17
+    ports:
+      - ${NGINX_PORT}:80
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app:/var/www/html
+
+  mariadb:
+    image: mariadb:10.4.12
+    volumes:
+      - ./mariadb/init:/docker-entrypoint-initdb.d
+    ports:
+      - ${MARIADB_PORT}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
